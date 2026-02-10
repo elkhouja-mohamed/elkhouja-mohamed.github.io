@@ -1,0 +1,185 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <title>Contact - Elkhouja-mohamed</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html"><img src="images/med.png"></a>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="index.html">Accueil</a></li>
+                <li><a class="nav-link" href="about.html">À propos</a></li>
+                <li><a class="nav-link" href="skills.html">Compétences</a></li>
+                <li><a class="nav-link" href="experience.html">Expérience</a></li>
+                <li><a class="nav-link" href="projects.html">Projets</a></li>
+                <li><a class="nav-link active" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez-moi</h2>
+                <p class="section-subtitle">Prêt à démarrer votre prochain projet ? Parlons-en !</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Restons connectés</h3>
+                    <p>
+                        Je suis toujours ouvert aux opportunités passionnantes et aux collaborations créatives. 
+                        N'hésitez pas à me contacter pour discuter de votre projet.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <span>med.elkhouja@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Téléphone</strong>
+                                <span>+212 638519759</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Localisation</strong>
+                                <span>AIT SEDRATE EL OULIA TINGHIR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="user_name" required>
+                        <label>Nom complet</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="user_email" required>
+                        <label>Adresse email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" required>
+                        <label>Sujet</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" required></textarea>
+                        <label>Message</label>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-full" value="Envoyer le message">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-text">
+                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/khoujaMedo" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        // Étape 1: Remplacez 'YOUR_PUBLIC_KEY' par votre clé publique EmailJS
+        // Allez sur https://dashboard.emailjs.com/admin/account pour obtenir votre Public Key
+        (function(){
+            emailjs.init({
+                publicKey: "DW6QWqbNjmm56--pY", // Ex: "user_abc123def456"
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut
+
+            // Collecte des données du formulaire
+            const formData = {
+                from_name: this.user_name.value,
+                reply_to: this.user_email.value, // Pour configurer le Reply-To dans le template EmailJS
+                subject: this.subject.value,
+                message: this.message.value + '\n\n---\nEmail de l\'expéditeur: ' + this.user_email.value + '\nNom: ' + this.user_name.value // Ajout explicite des infos utilisateur dans le corps du message
+            };
+
+            // Étape 2: Remplacez 'YOUR_SERVICE_ID' par l'ID de votre service EmailJS
+            // Créez un service sur https://dashboard.emailjs.com/admin/integration
+            // Étape 3: Remplacez 'YOUR_TEMPLATE_ID' par l'ID de votre template EmailJS
+            // Créez un template sur https://dashboard.emailjs.com/admin/templates
+            // Assurez-vous que votre template inclut {{reply_to}} pour le header Reply-To et {{from_email}} ou similaire si needed
+            emailjs.send('service_c005w18', 'template_lxlvlcr', formData)
+                .then(function() {
+                    alert('Message envoyé avec succès ! Je vous répondrai bientôt.');
+                    this.reset(); // Réinitialise le formulaire
+                }, function(error) {
+                    console.error('Erreur EmailJS:', error);
+                    alert('Échec de l\'envoi du message. Vérifiez la console pour plus de détails ou contactez-moi directement à aminoukhouya86@gmail.com');
+                });
+        });
+    </script>
+</body>
+</html>
