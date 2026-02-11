@@ -1,0 +1,181 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets - Elkhouja-mohamed</title>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="style_projects.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+                        <a href="index.html"><img src="images/med.png"></a>
+            <ul class="nav-menu">
+                <li><a class="nav-link" href="index.html">Accueil</a></li>
+                <li><a class="nav-link" href="about.html">À propos</a></li>
+                <li><a class="nav-link" href="skills.html">Compétences</a></li>
+                <li><a class="nav-link" href="experience.html">Expérience</a></li>
+                <li><a class="nav-link" href="projects.html">Projets</a></li>
+                <li><a class="nav-link active" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="projects">
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mes certifications</h2>
+                <p class="section-subtitle">Découvrez quelques-unes de mes certifications</p>
+            </div>
+
+            <!-- Certificat 1: MongoDB Database Admin Path -->
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/admin.png');">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB Database Admin Path (Self-Managed).pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MongoDB Database Admin Path (Self-Managed)</h3>
+                        <p class="project-description">
+                            Certificat de complétion pour le parcours MongoDB Database Admin Path (Self-Managed), obtenu le 15 août 2025. Couvre l'administration et la gestion de bases de données MongoDB en environnement auto-géré.
+                        </p>
+                        <div class="project-tech">
+                            <span>MongoDB</span>
+                            <span>Database Administration</span>
+                            <span>Self-Managed</span>
+                        </div>
+                        <a href="certificates/MongoDB Database Admin Path (Self-Managed).pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
+                    </div>
+                </div>
+
+                <!-- Certificat 2: MongoDB Python Developer Path -->
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/dev.png');">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB Python Developer Path.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MongoDB Python Developer Path</h3>
+                        <p class="project-description">
+                            Certificat de complétion pour le parcours MongoDB Python Developer Path, obtenu le 20 août 2025. Formation sur le développement d'applications avec MongoDB et Python.
+                        </p>
+                        <div class="project-tech">
+                            <span>MongoDB</span>
+                            <span>Python</span>
+                            <span>Developer</span>
+                        </div>
+                        <a href="certificates/MongoDB Python Developer Path.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
+                    </div>
+                </div>
+
+                <!-- Certificat 3: MongoDB Data Modeling Path -->
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/data_modlin.png');">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB Data Modeling Path.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">MongoDB Data Modeling Path</h3>
+                        <p class="project-description">
+                            Certificat de complétion pour le parcours MongoDB Data Modeling Path, obtenu le 11 septembre 2025. Focus sur la modélisation de données dans MongoDB.
+                        </p>
+                        <div class="project-tech">
+                            <span>MongoDB</span>
+                            <span>Data Modeling</span>
+                        </div>
+                        <a href="certificates/MongoDB Data Modeling Path.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
+                    </div>
+                </div>
+                 <!-- Algorithm and Program Design - Huawei ICT Academy-->
+
+                 <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/APD_Huawei.png');">
+                        <div class="project-links">
+                            <a href="certificates/APD_Huawei.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Algorithm and Program Design - Huawei ICT Academy</h3>
+                        <p class="project-description">
+                            Formation certifiante Huawei ICT Academy couvrant les fondamentaux de l'algorithmique et de la conception de programmes. Programme complet incluant la résolution de problèmes complexes, l'optimisation d'algorithmes et l'implémentation en langage de programmation.
+                        <div class="project-tech">
+                            <span>Algorithm Design</span>
+                            <span>Data Structures</span>
+                            <span>Problem Solving</span>
+                            <span>Programming Logic</span>
+                            <span>Complexity Analysis</span>
+                        </div>
+                        <a href="certificates/APD_Huawei.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
+                    </div>
+                </div> 
+        </div>
+        
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-text">
+                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
