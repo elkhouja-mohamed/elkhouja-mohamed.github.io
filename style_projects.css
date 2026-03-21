@@ -111,12 +111,6 @@ body {
     color: var(--primary-color);
 }
 
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
 .nav-link {
     text-decoration: none;
     color: var(--text-primary);
@@ -564,23 +558,39 @@ body {
     height: 40px;
 }
 
+#menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+#menu-btn {
+    display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
+    
+    #menu {
+        display: none;
         flex-direction: column;
         background: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: var(--shadow-md);
-        padding: 2rem 0;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
     }
 
-    .nav-menu.active {
-        left: 0;
+    #menu.show {
+        display: flex;
+    }
+
+    #menu-btn {
+        display: block;
+        font-size: 25px;
+        background: none;
+        border: none;
+        cursor: pointer;
     }
 
     .hamburger {

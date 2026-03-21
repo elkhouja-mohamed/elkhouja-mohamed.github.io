@@ -52,7 +52,11 @@
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html"><img src="images/med.png"></a>
-            <ul class="nav-menu">
+            <!-- button -->
+            <button id="menu-btn">☰</button>
+
+        <!-- menu -->
+        <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
@@ -60,14 +64,16 @@
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
+<script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("menu");
 
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("show");
+        });
+    </script>
     <section class="experience">
         <div class="container">
             <div class="section-header">
