@@ -1,192 +1,230 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Contact — Elkhouja Mohamed | Opportunités IA &amp; Data</title>
+    <meta name="description"
+        content="Contactez Elkhouja Mohamed, développeur IA & Data Science (Master Intelligence Artificielle et Applications) : email med.elkhouja@gmail.com, téléphone +212 638519759, formulaire de contact.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/contact.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Contact — Elkhouja Mohamed | Opportunités IA &amp; Data">
+    <meta property="og:description"
+        content="Email, téléphone et formulaire de contact. Disponible pour des opportunités en IA, Data Science et développement logiciel.">
+    <meta property="og:image" content="images/SSS.jpg">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
-    <title>Contact - Elkhouja-mohamed</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
-                <li><a class="nav-link" href="certifications.html">certifications</a></li>
-                <li><a class="nav-link active" href="contact.html">Contact</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
+                <li><a class="nav-link active" href="contact.html" aria-current="page">Contact</a></li>
             </ul>
         </div>
     </header>
-<script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-    <section class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Contactez-moi</h2>
-                <p class="section-subtitle">Prêt à démarrer votre prochain projet ? Parlons-en !</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Restons connectés</h3>
-                    <p>
-                        Je suis toujours ouvert aux opportunités passionnantes et aux collaborations créatives. 
-                        N'hésitez pas à me contacter pour discuter de votre projet.
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <strong>Email</strong>
-                                <span>med.elkhouja@gmail.com</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <strong>Téléphone</strong>
-                                <span>+212 638519759</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Localisation</strong>
-                                <span>AIT SEDRATE EL OULIA TINGHIR</span>
-                            </div>
-                        </div>
-                    </div>
+    <main id="main">
+        <section class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Contact</span>
+                    <h1 class="section-title">Contactez-moi</h2>
+                    <p class="section-subtitle">Prêt à démarrer votre prochain projet ? Parlons-en !</p>
                 </div>
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" name="user_name" required>
-                        <label>Nom complet</label>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Restons connectés</h2>
+                        <p>
+                            Je suis toujours ouvert aux opportunités passionnantes et aux collaborations créatives.
+                            N'hésitez pas à me contacter pour discuter de votre projet.
+                        </p>
+
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Email</strong>
+                                    <a href="mailto:med.elkhouja@gmail.com">med.elkhouja@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Téléphone</strong>
+                                    <a href="tel:+212638519759">+212 638519759</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                <div>
+                                    <strong>Localisation</strong>
+                                    <span>AIT SEDRATE EL OULIA TINGHIR</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" name="user_email" required>
-                        <label>Adresse email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" required>
-                        <label>Sujet</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" required></textarea>
-                        <label>Message</label>
-                    </div>
-                    <input type="submit" class="btn btn-primary btn-full" value="Envoyer le message">
-                </form>
+
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="user_name" name="user_name" placeholder=" " autocomplete="name"
+                                required>
+                            <label for="user_name">Nom complet</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="user_email" name="user_email" placeholder=" " autocomplete="email"
+                                required>
+                            <label for="user_email">Adresse email</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder=" " required>
+                            <label for="subject">Sujet</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder=" " rows="5" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer le message
+                        </button>
+                        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
-    <!-- EmailJS SDK -->
-    <script type="text/javascript"
-            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        // Étape 1: Remplacez 'YOUR_PUBLIC_KEY' par votre clé publique EmailJS
-        // Allez sur https://dashboard.emailjs.com/admin/account pour obtenir votre Public Key
-        (function(){
-            emailjs.init({
-                publicKey: "DW6QWqbNjmm56--pY", // Ex: "user_abc123def456"
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js" defer></script>
+    <script>
+        (function () {
+            'use strict';
+
+            var PUBLIC_KEY = 'DW6QWqbNjmm56--pY';
+            var SERVICE_ID = 'service_c005w18';
+            var TEMPLATE_ID = 'template_lxlvlcr';
+
+            var form = document.getElementById('contact-form');
+            var status = document.getElementById('form-status');
+
+            function setStatus(type, text) {
+                status.textContent = text;
+                status.className = 'form-status show ' + type;
+            }
+
+            if (!window.emailjs) {
+                setStatus('error', 'Le service d’envoi est indisponible. Veuillez me contacter par email.');
+                return;
+            }
+
+            emailjs.init({ publicKey: PUBLIC_KEY });
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                var name = form.user_name.value.trim();
+                var email = form.user_email.value.trim();
+                var subject = form.subject.value.trim();
+                var message = form.message.value.trim();
+
+                if (!name || !email || !subject || !message) {
+                    setStatus('error', 'Veuillez remplir tous les champs du formulaire.');
+                    return;
+                }
+
+                var submitBtn = form.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi en cours…';
+                setStatus('', '');
+                status.className = 'form-status';
+
+                emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+                    from_name: name,
+                    reply_to: email,
+                    subject: subject,
+                    message: message + '\n\n---\nEmail de l\'expéditeur : ' + email + '\nNom : ' + name
+                }).then(function () {
+                    form.reset();
+                    setStatus('success', 'Message envoyé avec succès ! Je vous répondrai bientôt.');
+                }).catch(function (error) {
+                    console.error('Erreur EmailJS:', error);
+                    setStatus('error', 'Échec de l’envoi du message. Merci de me contacter directement à med.elkhouja@gmail.com.');
+                }).then(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane" aria-hidden="true"></i> Envoyer le message';
+                });
             });
         })();
     </script>
-    <script type="text/javascript">
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Empêche la soumission par défaut
-
-            // Collecte des données du formulaire
-            const formData = {
-                from_name: this.user_name.value,
-                reply_to: this.user_email.value, // Pour configurer le Reply-To dans le template EmailJS
-                subject: this.subject.value,
-                message: this.message.value + '\n\n---\nEmail de l\'expéditeur: ' + this.user_email.value + '\nNom: ' + this.user_name.value // Ajout explicite des infos utilisateur dans le corps du message
-            };
-
-            // Étape 2: Remplacez 'YOUR_SERVICE_ID' par l'ID de votre service EmailJS
-            // Créez un service sur https://dashboard.emailjs.com/admin/integration
-            // Étape 3: Remplacez 'YOUR_TEMPLATE_ID' par l'ID de votre template EmailJS
-            // Créez un template sur https://dashboard.emailjs.com/admin/templates
-            // Assurez-vous que votre template inclut {{reply_to}} pour le header Reply-To et {{from_email}} ou similaire si needed
-            emailjs.send('service_c005w18', 'template_lxlvlcr', formData)
-                .then(function() {
-                    alert('Message envoyé avec succès ! Je vous répondrai bientôt.');
-                    this.reset(); // Réinitialise le formulaire
-                }, function(error) {
-                    console.error('Erreur EmailJS:', error);
-                    alert('Échec de l\'envoi du message. Vérifiez la console pour plus de détails ou contactez-moi directement à aminoukhouya86@gmail.com');
-                });
-        });
-    </script>
 </body>
+
 </html>

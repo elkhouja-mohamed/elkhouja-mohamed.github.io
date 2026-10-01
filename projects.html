@@ -1,292 +1,348 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets - Elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Projets — Elkhouja Mohamed | IA, Data Science &amp; Web</title>
+    <meta name="description"
+        content="Projets d'Elkhouja Mohamed : classification d'images de dattes par CNN, gestion des examens avec Django/React, assistant juridique intelligent, Data Warehouse sous Talend et visualisation interactive avec D3.js.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/projects.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Projets — Elkhouja Mohamed | IA, Data Science &amp; Web">
+    <meta property="og:description"
+        content="Deep Learning, Django/React, NLP, Data Warehouse et data visualisation — code source disponible sur GitHub.">
+    <meta property="og:image" content="images/dattes.png">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/projects.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
-    <link rel="stylesheet" href="style_projects.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-                        <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
-                <li><a class="nav-link active" href="projects.html">Projets</a></li>
-                <li><a class="nav-link" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link active" href="projects.html" aria-current="page">Projets</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-    <script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-    <section class="projects">
+    <main id="main">
+        <section class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Projets</span>
+                    <h1 class="section-title">Mes Projets</h2>
+                    <p class="section-subtitle">Découvrez quelques-unes de mes réalisations en intelligence
+                        artificielle, data engineering et développement web</p>
+                </div>
 
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Mes Projets</h2>
-                <p class="section-subtitle">Découvrez quelques-unes de mes réalisations</p>
+                <div class="projects-grid">
+
+                    <!-- Projet 1 : Classification d'images de dattes par CNN -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/dattes.png"
+                            alt="Aperçu du projet de classification d'images de dattes" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/elkhouja-mohamed/Classification-of-dates-fruit-images-with-acc-99-"
+                                target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Deep Learning</span>
+                            <h2 class="project-title">
+                                Classification des Images de Dattes par Réseau Neuronal Convolutif (CNN)
+                            </h2>
+                            <p class="project-description">
+                                Conception et développement d'un système de classification automatique des variétés de
+                                dattes utilisant l'apprentissage profond.
+                                Le projet vise à automatiser le processus d'identification des différentes variétés de
+                                dattes (Medjool, Ajwa, Galaxy) à partir d'images,
+                                améliorant ainsi la précision et l'efficacité par rapport aux méthodes traditionnelles
+                                de tri manuel.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Deep Learning</span>
+                                <span>TensorFlow</span>
+                                <span>Keras</span>
+                                <span>CNN</span>
+                                <span>Tkinter</span>
+                                <span>Scikit-learn</span>
+                                <span>Pandas</span>
+                                <span>Jupyter</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/elkhouja-mohamed/Classification-of-dates-fruit-images-with-acc-99-"
+                                    target="_blank" rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 2 : Application de Gestion des Examens -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/examen.jpg"
+                            alt="Aperçu de l'application web de gestion des examens" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/elkhouja-mohamed/gestion.examen.fpo" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Application Web</span>
+                            <h2 class="project-title">Application Web de Gestion des Examens</h2>
+                            <p class="project-description">
+                                Développement d'une application web pour gérer le processus des examens : planification,
+                                inscriptions, rapports et gestion des enseignants. Déployée avec
+                                <strong>Nginx</strong> et <strong>Gunicorn</strong>.
+                            </p>
+                            <div class="project-tech">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>PostgreSQL</span>
+                                <span>Nginx</span>
+                                <span>Gunicorn</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/elkhouja-mohamed/gestion.examen.fpo" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 3 : Maroc Legal Assistant -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/assistant-juridique-droit-docial.jpg"
+                            alt="Aperçu de l'assistant juridique intelligent" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/Ouakach-Amine/assistant-juridique-intelligent" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">NLP &amp; IA</span>
+                            <h2 class="project-title">Maroc Legal Assistant</h2>
+                            <p class="project-description">
+                                Assistant juridique numérique intelligent basé sur l’IA pour faciliter l’accès à
+                                l’information juridique au Maroc. Intègre un chatbot conversationnel pour les citoyens
+                                et les juristes.
+                            </p>
+                            <div class="project-tech">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>Rasa</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/Ouakach-Amine/assistant-juridique-intelligent" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 4 : Remote Patient Monitoring (systèmes multi-agents) -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/agent.png"
+                            alt="Aperçu du framework de télésurveillance médicale" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/elkhouja-mohamed/Application-SMA" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Systèmes Multi-Agents</span>
+                            <h2 class="project-title">Remote Patient Monitoring Framework</h2>
+                            <p class="project-description">
+                                Application de télésurveillance médicale utilisant un système multi-agents (MAS)
+                                pour simuler et monitorer la fréquence cardiaque, détecter les anomalies et notifier
+                                les professionnels de santé.
+                            </p>
+                            <div class="project-tech">
+                                <span>Java</span>
+                                <span>JADE</span>
+                                <span>Swing</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/elkhouja-mohamed/Application-SMA" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 5 : Data Warehouse & ETL -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/data-warehousing1.png"
+                            alt="Aperçu du projet de Data Warehouse et ETL" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/elkhouja-mohamed/Data_Warehouse" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Data Engineering</span>
+                            <h2 class="project-title">Data Warehouse &amp; ETL Décisionnel</h2>
+                            <p class="project-description">
+                                Projet académique visant la conception et l’implémentation d’un Data Warehouse
+                                décisionnel intégrant des données hétérogènes de ventes (Superstore Dataset)
+                                et de gestion de stock (base MySQL et PostgreSQL).
+                                Le projet repose sur un schéma en étoile, un processus ETL développé avec Talend
+                                et l’utilisation des Slowly Changing Dimensions (Type 2) afin d’assurer
+                                la traçabilité historique des données.
+                                Le Data Warehouse permet des analyses avancées sur les ventes, la rentabilité,
+                                les stocks, les délais de livraison et la performance des clients.
+                            </p>
+                            <div class="project-tech">
+                                <span>Data Warehouse</span>
+                                <span>ETL</span>
+                                <span>Talend</span>
+                                <span>SQL</span>
+                                <span>MySQL</span>
+                                <span>PostgreSQL</span>
+                                <span>Business Intelligence</span>
+                                <span>SCD Type 2</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/elkhouja-mohamed/Data_Warehouse" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projet 6 : Visualisation Interactive des Hôpitaux -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/visua.png"
+                            alt="Aperçu de l'application de visualisation des hôpitaux du Maroc" width="660"
+                            height="440" loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="https://github.com/elkhouja-mohamed/visualisation-h-pital-par-r-gion"
+                                target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Voir le code source sur GitHub (nouvel onglet)">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Data Visualisation</span>
+                            <h2 class="project-title">Visualisation Interactive des Hôpitaux du Maroc</h2>
+                            <p class="project-description">
+                                Mini-projet de data visualisation consistant à concevoir une application web interactive
+                                permettant d’analyser la répartition des établissements hospitaliers au Maroc.
+                                L’application propose plusieurs visualisations dynamiques (carte interactive, diagrammes
+                                et treemap) afin d’explorer les données par région et par catégorie, et de mettre en
+                                évidence les disparités territoriales du système de santé.
+                            </p>
+                            <div class="project-tech">
+                                <span>D3.js</span>
+                                <span>JavaScript</span>
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>Data Visualization</span>
+                                <span>TopoJSON</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://github.com/elkhouja-mohamed/visualisation-h-pital-par-r-gion"
+                                    target="_blank" rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fab fa-github" aria-hidden="true"></i> Voir sur GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
             </div>
-
-            <div class="projects-grid">
-                <!-- Projet 1: dApp pour l'Affichage des Notes -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/dattes.png');">
-                        <div class="project-links">
-                            <a href="https://github.com/elkhouja-mohamed/Classification-of-dates-fruit-images-with-acc-99-" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Classification des Images de Dattes par Réseau Neuronal Convolutif (CNN)</h3>
-                        <p class="project-description">
-                                            Conception et développement d'un système de classification automatique des variétés de dattes utilisant l'apprentissage profond. 
-                                            Le projet vise à automatiser le processus d'identification des différentes variétés de dattes (Medjool, Ajwa, Galaxy) à partir d'images, 
-                                            améliorant ainsi la précision et l'efficacité par rapport aux méthodes traditionnelles de tri manuel.
-                        </p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Deep Learning</span>
-                            <span>TensorFlow</span>
-                            <span>Keras</span>
-                            <span>CNN</span>
-                            <span>Tkinter</span>
-                            <span>Scikit-learn</span>
-                            <span>Pandas</span>
-                            <span>Jupyter</span>
-                        </div>
-                        <a href="https://github.com/elkhouja-mohamed/Classification-of-dates-fruit-images-with-acc-99-" target="_blank" class="github-link">Voir sur GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Projet 2: Remote Patient Monitoring -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/agent.png');">
-        <div class="project-links">
-            <a href="https://github.com/elkhouja-mohamed/Application-SMA" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-    </div>
-
-    <div class="project-content">
-        <h3 class="project-title">Remote Patient Monitoring Framework</h3>
-
-        <p class="project-description">
-            Application de télésurveillance médicale utilisant un système multi-agents (MAS)
-            pour simuler et monitorer la fréquence cardiaque, détecter les anomalies et notifier
-            les professionnels de santé.
-        </p>
-
-        <div class="project-tech">
-            <span>Java</span>
-            <span>JADE</span>
-            <span>Swing</span>
-        </div>
-
-        <a href="https://github.com/elkhouja-mohamed/Application-SMA"
-           target="_blank"
-           class="github-link">
-           Voir sur GitHub
-        </a>
-    </div>
-</div>
-
-
-                <!-- Projet 3: Application Web de Gestion des Examens -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/examen.jpg');">
-                        <div class="project-links">
-                            <a href="https://github.com/elkhouja-mohamed/gestion.examen.fpo" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Application Web de Gestion des Examens</h3>
-                        <p class="project-description">
-                            Développement d'une application web pour gérer le processus des examens : planification, inscriptions, rapports et gestion des enseignants. Déployée avec <strong>Nginx</strong> et <strong>Gunicorn</strong>.
-                        </p>
-                        <div class="project-tech">
-                            <span>Django</span><span>React</span><span>PostgreSQL</span><span>Nginx</span><span>Gunicorn</span>
-                        </div>
-                        <a href="https://github.com/elkhouja-mohamed/gestion.examen.fpo" target="_blank" class="github-link">Voir sur GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Projet 4: Maroc Legal Assistant -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/assistant-juridique-droit-docial.jpg');">
-                        <div class="project-links">
-                            <a href="https://github.com/Ouakach-Amine/assistant-juridique-intelligent" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Maroc Legal Assistant</h3>
-                        <p class="project-description">
-                            Assistant juridique numérique intelligent basé sur l’IA pour faciliter l’accès à l’information juridique au Maroc. Intègre un chatbot conversationnel pour les citoyens et les juristes.
-                        </p>
-                        <div class="project-tech">
-                            <span>Django</span><span>React</span><span>Rasa</span><span>PostgreSQL</span>
-                        </div>
-                        <a href="https://github.com/Ouakach-Amine/assistant-juridique-intelligent" target="_blank" class="github-link">Voir sur GitHub</a>
-                    </div>
-                </div>
-
-
-
-
-<!-- Projet : Data Warehouse & ETL avec Talend -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/data-warehousing1.png');">
-        <div class="project-links">
-            <!-- Si tu as un repo GitHub, mets le lien ici -->
-             <a href="https://github.com/elkhouja-mohamed/Data_Warehouse" target="_blank"><i class="fab fa-github"></i></a> 
-        </div>
-    </div>
-
-    <div class="project-content">
-        <h3 class="project-title">Data Warehouse & ETL Décisionnel</h3>
-
-        <p class="project-description">
-            Projet académique visant la conception et l’implémentation d’un Data Warehouse
-            décisionnel intégrant des données hétérogènes de ventes (Superstore Dataset)
-            et de gestion de stock (base MySQL et PostgreSQL).
-            Le projet repose sur un schéma en étoile, un processus ETL développé avec Talend
-            et l’utilisation des Slowly Changing Dimensions (Type 2) afin d’assurer
-            la traçabilité historique des données.
-            Le Data Warehouse permet des analyses avancées sur les ventes, la rentabilité,
-            les stocks, les délais de livraison et la performance des clients.
-        </p>
-
-        <div class="project-tech">
-            <span>Data Warehouse</span>
-            <span>ETL</span>
-            <span>Talend</span>
-            <span>SQL</span>
-            <span>MySQL</span>
-            <span>PostgreSQL</span>
-            <span>Business Intelligence</span>
-            <span>SCD Type 2</span>
-        </div>
-        <a href="https://github.com/elkhouja-mohamed/Data_Warehouse" target="_blank" class="github-link">Voir sur GitHub</a>
-
-        
-    </div>
-</div>
-
-
-
-
-                <!-- Projet : Visualisation Interactive des Hôpitaux du Maroc -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/visua.png');">
-        <div class="project-links">
-            <a href="https://github.com/elkhouja-mohamed/visualisation-h-pital-par-r-gion"
-               target="_blank"
-               class="project-link">
-                <i class="fab fa-github"></i>
-            </a>
-        </div>
-    </div>
-
-    <div class="project-content">
-        <h3 class="project-title">Visualisation Interactive des Hôpitaux du Maroc</h3>
-
-        <p class="project-description">
-            Mini-projet de data visualisation consistant à concevoir une application web interactive
-            permettant d’analyser la répartition des établissements hospitaliers au Maroc.
-            L’application propose plusieurs visualisations dynamiques (carte interactive, diagrammes
-            et treemap) afin d’explorer les données par région et par catégorie, et de mettre en
-            évidence les disparités territoriales du système de santé.
-        </p>
-
-        <div class="project-tech">
-            <span>D3.js</span>
-            <span>JavaScript</span>
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>Data Visualization</span>
-            <span>TopoJSON</span>
-        </div>
-
-        <a href="https://github.com/elkhouja-mohamed/visualisation-h-pital-par-r-gion"
-           target="_blank"
-           class="github-link">
-           Voir sur GitHub
-        </a>
-    </div>
-</div>
-
-
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>

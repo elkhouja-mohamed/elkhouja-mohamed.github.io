@@ -1,184 +1,230 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compétences - Elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Compétences — Elkhouja Mohamed | IA, Data &amp; Web</title>
+    <meta name="description"
+        content="Compétences techniques d'Elkhouja Mohamed : Python, TensorFlow, PyTorch, scikit-learn, Django, React, PostgreSQL, MongoDB, Power BI, Talend, Hadoop et Spark pour l'IA et la Data.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/skills.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Compétences — Elkhouja Mohamed | IA, Data &amp; Web">
+    <meta property="og:description"
+        content="Python, TensorFlow, PyTorch, Django, React, PostgreSQL, MongoDB, Power BI, Talend, Hadoop et Spark.">
+    <meta property="og:image" content="images/icon.png">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/skills.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
-                <li><a class="nav-link active" href="skills.html">Compétences</a></li>
+                <li><a class="nav-link active" href="skills.html" aria-current="page">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
-                <li><a class="nav-link" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-    <script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-    <section class="skills-section skills">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Mes Compétences</h2>
-                <p class="section-subtitle">Technologies et outils que je maîtrise, inspirés de mon parcours en IA et génie logiciel</p>
+    <main id="main">
+        <section class="skills-section skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Compétences</span>
+                    <h1 class="section-title">Mes Compétences</h2>
+                    <p class="section-subtitle">Technologies et outils que je maîtrise, inspirés de mon parcours en IA et
+                        génie logiciel</p>
+                </div>
+
+                <div class="skills-content">
+
+                    <div class="skills-category">
+                        <h2 class="category-title">
+                            <i class="fas fa-code" aria-hidden="true"></i> Langages de Programmation
+                        </h2>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Python</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Java</span>
+                                <span class="chip">C</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">HTML</span>
+                                <span class="chip">CSS</span>
+                                <span class="chip">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h2 class="category-title">
+                            <i class="fas fa-brain" aria-hidden="true"></i> IA, Machine Learning &amp; Deep Learning
+                        </h2>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">TensorFlow</span>
+                                <span class="chip">PyTorch</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Scikit-learn</span>
+                                <span class="chip">Keras</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">NumPy</span>
+                                <span class="chip">Pandas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h2 class="category-title">
+                            <i class="fas fa-layer-group" aria-hidden="true"></i> Développement Web &amp; Frameworks
+                        </h2>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Django</span>
+                                <span class="chip">React</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">SQL</span>
+                                <span class="chip">PostgreSQL</span>
+                                <span class="chip">MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">UML</span>
+                                <span class="chip">Modélisation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h2 class="category-title">
+                            <i class="fas fa-chart-line" aria-hidden="true"></i> Business Intelligence &amp; Données
+                        </h2>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Power BI</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">ETL</span>
+                                <span class="chip">OLAP</span>
+                                <span class="chip">Reporting</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Entrepôts de Données</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skills-category">
+                        <h2 class="category-title">
+                            <i class="fas fa-server" aria-hidden="true"></i> Big Data &amp; Outils
+                        </h2>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Hadoop</span>
+                                <span class="chip">Spark</span>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="chip">Git</span>
+                                <span class="chip">VS Code</span>
+                                <span class="chip">Talend</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-
-            <div class="skills-content">
-
-                <!-- Catégorie 1 -->
-                <div class="skills-category">
-                    <h3 class="category-title">Langages de Programmation</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Python</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Java / C</span></div>
-                       
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Web (HTML, CSS, JS)</span></div>
-                    </div>
-                </div>
-
-                <!-- Catégorie 2 -->
-                <div class="skills-category">
-                    <h3 class="category-title">IA & Machine Learning & Deep Learning</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>TensorFlow / PyTorch</span></div>
-                       
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Scikit-learn / Keras</span></div>
-                       
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>NumPy / Pandas</span></div>
-                    </div>
-                </div>
-
-                <!-- Catégorie 3 -->
-                <div class="skills-category">
-                    <h3 class="category-title">Développement Web & Frameworks</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Django / React</span></div>
-
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Bases de Données (SQL, PostgreSQL, MongoDB)</span></div>
-                    
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>UML Modélisation</span></div>
-                    </div>
-                </div>
-
-                <!-- Catégorie 4 -->
-                <div class="skills-category">
-                    <h3 class="category-title">Business Intelligence & Données</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Power BI </span></div>
-                        
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>ETL</span></div>
-                        <div class="skill-header"><span>OLAP</span></div>
-                        <div class="skill-header"><span>Reporting</span></div>
-                        
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Entrepôts de Données</span></div>
-                    </div>
-                </div>
-
-                <!-- Catégorie 5 -->
-                <div class="skills-category">
-                    <h3 class="category-title">Big Data & Outils</h3>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Hadoop</span></div>
-                        <div class="skill-header"><span>Spark</span></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-header"><span>Git</span></div>
-                        <div class="skill-header"><span>VS Code</span></div>
-                        <div class="skill-header"><span>Talend</span></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>

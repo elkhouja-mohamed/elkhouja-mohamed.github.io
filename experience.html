@@ -1,290 +1,302 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expérience - Elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Expérience — Elkhouja Mohamed | Projets &amp; Réalisations</title>
+    <meta name="description"
+        content="Parcours et réalisations d'Elkhouja Mohamed : classification d'images par CNN, application de gestion des examens Django/React, application de télésurveillance multi-agents et Data Warehouse sous Talend.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/experience.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Expérience — Elkhouja Mohamed | Projets &amp; Réalisations">
+    <meta property="og:description"
+        content="Deep Learning, Django/React, systèmes multi-agents JADE et Data Warehouse avec Talend.">
+    <meta property="og:image" content="images/icon.png">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/experience.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
-                <li><a class="nav-link active" href="experience.html">Expérience</a></li>
+                <li><a class="nav-link active" href="experience.html" aria-current="page">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-<script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-    <section class="experience">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Expérience Professionnelle</h2>
-                <p class="section-subtitle">Mon parcours professionnel et mes réalisations</p>
-            </div>
-    <div class="timeline">
-    <!-- Projet de Classification des Images de Dattes par CNN -->
-    <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-            <span class="timeline-date">2023</span>
-            <h3>Classification des Images de Dattes par Réseau Neuronal Convolutif (CNN)</h3>
-            <h4>Projet de Fin d'Études Licence - Faculté Polydisciplinaire de Ouarzazate</h4>
-            <p>
-                Conception et développement d'un système de classification automatique des variétés de dattes utilisant l'apprentissage profond. Le projet vise à automatiser le processus d'identification des différentes variétés de dattes (Medjool, Ajwa, Galaxy) à partir d'images, améliorant ainsi la précision et l'efficacité par rapport aux méthodes traditionnelles de tri manuel.
-            </p>
-            <ul>
-                <li>Architecture CNN personnalisée pour la reconnaissance d'images de dattes</li>
-                <li>Prétraitement et augmentation des données pour améliorer la robustesse du modèle</li>
-                <li>Entraînement du modèle avec TensorFlow et Keras pour la classification multi-classes</li>
-                <li>Interface graphique développée avec Tkinter pour l'upload et la visualisation des images</li>
-                <li>Intégration de techniques de pooling (Max-Pooling) et d'activation (ReLU, Softmax)</li>
-                <li>Évaluation des performances avec métriques de précision, rappel et F1-score</li>
-                <li>Déploiement d'une application de classification en temps réel</li>
-            </ul>
-            <div class="timeline-skills">
-                <span>Python</span>
-                <span>Deep Learning</span>
-                <span>TensorFlow</span>
-                <span>Keras</span>
-                <span>CNN</span>
-                <span>Tkinter</span>
-                <span>Scikit-learn</span>
-                <span>Pandas</span>
-                <span>Jupyter</span>
-            </div>
-        </div>
-    </div>
+    <main id="main">
+        <section class="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Expérience</span>
+                    <h1 class="section-title">Expérience Professionnelle</h2>
+                    <p class="section-subtitle">Mon parcours professionnel et mes réalisations</p>
+                </div>
 
-                
+                <div class="timeline">
 
-                <!-- Projet 1 -->
-<div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">
-        <span class="timeline-date">2025</span>
-        <h3>Application Web de Gestion des Examens</h3>
-        <h4>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h4>
-        <p>
-            Développement d'une application web pour gérer tout le processus lié aux examens universitaires : 
-            planification, inscription, génération de rapports et gestion des enseignants.  
-            Objectif : automatiser et simplifier les opérations administratives.  
-            L’application a été déployée sur un serveur en production à l’aide de <strong>Nginx</strong> et <strong>Gunicorn</strong>, 
-            garantissant performance, stabilité et accessibilité sans passer par le serveur local (localhost).
-        </p>
-        <div class="timeline-skills">
-            <span>Django</span>
-            <span>React</span>
-            <span>PostgreSQL</span>
-            <span>UML</span>
-            <span>Nginx</span>
-            <span>Gunicorn</span>
-        </div>
-    </div>
-</div>
-
-
-                <!-- Projet 2 -->
-<div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">
-        <span class="timeline-date">2025</span>
-        <h3>Application de Télésurveillance Médicale</h3>
-        <h4>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h4>
-        <p>
-            Conception et développement d’une application de télésurveillance des patients basée sur une architecture multi-agents (SMA) 
-            utilisant la plateforme <strong>JADE</strong>.  
-            Le système surveille en temps réel la fréquence cardiaque d’un patient, détecte automatiquement les anomalies 
-            (tachycardie, bradycardie) et notifie un professionnel de santé via un agent de notification.  
-            Une interface graphique en <strong>Java Swing</strong> permet de piloter le système (démarrage/arrêt des agents) et de suivre les journaux en temps réel.  
-            Le projet démontre la coopération entre agents autonomes pour la gestion distribuée de données médicales.
-        </p>
-        <div class="timeline-skills">
-            <span>Java</span>
-            <span>JADE</span>
-            <span>Multi-Agent System</span>
-            <span>Java Swing</span>
-        </div>
-    </div>
-</div>
-
-
-                <!-- Projet 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">2025</span>
-                        <h3>Maroc Legal Assistant : Votre Guide Juridique Numérique</h3>
-                        <h4>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h4>
-                        <p>
-                            Développement d'un assistant juridique intelligent utilisant Rasa pour faciliter l'accès à l'information juridique marocaine. L'application comprend un chatbot conversationnel, une interface web conviviale et un système de recherche sémantique avancé.
-                        </p>
-                        <div class="timeline-skills">
-                            <span>Django</span>
-                            <span>Python</span>
-                            <span>React</span>
-                            <span>PostgreSQL</span>
-                            <span>Rasa</span>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2023</span>
+                            <h2>Classification des Images de Dattes par Réseau Neuronal Convolutif (CNN)</h2>
+                            <h3>Projet de Fin d'Études Licence - Faculté Polydisciplinaire de Ouarzazate</h3>
+                            <p>
+                                Conception et développement d'un système de classification automatique des variétés de
+                                dattes utilisant l'apprentissage profond. Le projet vise à automatiser le processus
+                                d'identification des différentes variétés de dattes (Medjool, Ajwa, Galaxy) à partir
+                                d'images, améliorant ainsi la précision et l'efficacité par rapport aux méthodes
+                                traditionnelles de tri manuel.
+                            </p>
+                            <ul>
+                                <li>Architecture CNN personnalisée pour la reconnaissance d'images de dattes</li>
+                                <li>Prétraitement et augmentation des données pour améliorer la robustesse du modèle</li>
+                                <li>Entraînement du modèle avec TensorFlow et Keras pour la classification multi-classes
+                                </li>
+                                <li>Interface graphique développée avec Tkinter pour l'upload et la visualisation des images
+                                </li>
+                                <li>Intégration de techniques de pooling (Max-Pooling) et d'activation (ReLU, Softmax)
+                                </li>
+                                <li>Évaluation des performances avec métriques de précision, rappel et F1-score</li>
+                                <li>Déploiement d'une application de classification en temps réel</li>
+                            </ul>
+                            <div class="timeline-skills">
+                                <span>Python</span>
+                                <span>Deep Learning</span>
+                                <span>TensorFlow</span>
+                                <span>Keras</span>
+                                <span>CNN</span>
+                                <span>Tkinter</span>
+                                <span>Scikit-learn</span>
+                                <span>Pandas</span>
+                                <span>Jupyter</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025</span>
+                            <h2>Application Web de Gestion des Examens</h2>
+                            <h3>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h3>
+                            <p>
+                                Développement d'une application web pour gérer tout le processus lié aux examens
+                                universitaires : planification, inscription, génération de rapports et gestion des
+                                enseignants.<br>
+                                Objectif : automatiser et simplifier les opérations administratives.<br>
+                                L’application a été déployée sur un serveur en production à l’aide de
+                                <strong>Nginx</strong> et <strong>Gunicorn</strong>, garantissant performance, stabilité et
+                                accessibilité sans passer par le serveur local (localhost).
+                            </p>
+                            <div class="timeline-skills">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>PostgreSQL</span>
+                                <span>UML</span>
+                                <span>Nginx</span>
+                                <span>Gunicorn</span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025</span>
+                            <h2>Application de Télésurveillance Médicale</h2>
+                            <h3>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h3>
+                            <p>
+                                Conception et développement d’une application de télésurveillance des patients basée
+                                sur une architecture multi-agents (SMA) utilisant la plateforme <strong>JADE</strong>.<br>
+                                Le système surveille en temps réel la fréquence cardiaque d’un patient, détecte
+                                automatiquement les anomalies (tachycardie, bradycardie) et notifie un professionnel de
+                                santé via un agent de notification.<br>
+                                Une interface graphique en <strong>Java Swing</strong> permet de piloter le système
+                                (démarrage/arrêt des agents) et de suivre les journaux en temps réel.<br>
+                                Le projet démontre la coopération entre agents autonomes pour la gestion distribuée de
+                                données médicales.
+                            </p>
+                            <div class="timeline-skills">
+                                <span>Java</span>
+                                <span>JADE</span>
+                                <span>Multi-Agent System</span>
+                                <span>Java Swing</span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025</span>
+                            <h2>Maroc Legal Assistant : Votre Guide Juridique Numérique</h2>
+                            <h3>Projet Fin de Module - Université Ibn Zohr, Ouarzazate</h3>
+                            <p>
+                                Développement d'un assistant juridique intelligent utilisant Rasa pour faciliter l'accès à
+                                l'information juridique marocaine. L'application comprend un chatbot conversationnel, une
+                                interface web conviviale et un système de recherche sémantique avancé.
+                            </p>
+                            <div class="timeline-skills">
+                                <span>Django</span>
+                                <span>Python</span>
+                                <span>React</span>
+                                <span>PostgreSQL</span>
+                                <span>Rasa</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Projet : Data Warehouse & ETL avec Talend -->
-<div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">
-        <span class="timeline-date">2025–2026</span>
-        <h3>Conception d’un Data Warehouse & Processus ETL</h3>
-        <h4>Projet Fin de Module – Master Intelligence Artificielle et Applications</h4>
-        <p>
-            Conception et implémentation d’un Data Warehouse décisionnel intégrant des données
-            hétérogènes issues d’un dataset de ventes (Superstore) et d’une base de gestion de stock.
-            Le projet repose sur un schéma en étoile, un processus ETL développé avec Talend
-            et la gestion des Slowly Changing Dimensions (Type 2) afin d’assurer la traçabilité
-            des évolutions des données.  
-            Le système permet des analyses avancées sur les ventes, la rentabilité,
-            les stocks, les délais de livraison et la performance des clients.
-        </p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025–2026</span>
+                            <h2>Conception d’un Data Warehouse &amp; Processus ETL</h2>
+                            <h3>Projet Fin de Module – Master Intelligence Artificielle et Applications</h3>
+                            <p>
+                                Conception et implémentation d’un Data Warehouse décisionnel intégrant des données
+                                hétérogènes issues d’un dataset de ventes (Superstore) et d’une base de gestion de stock.
+                                Le projet repose sur un schéma en étoile, un processus ETL développé avec Talend et la
+                                gestion des Slowly Changing Dimensions (Type 2) afin d’assurer la traçabilité des
+                                évolutions des données.<br>
+                                Le système permet des analyses avancées sur les ventes, la rentabilité, les stocks, les
+                                délais de livraison et la performance des clients.
+                            </p>
 
-        <ul>
-            <li>Modélisation dimensionnelle (schéma en étoile)</li>
-            <li>Intégration de sources CSV et base MySQL</li>
-            <li>Mise en œuvre des SCD Type 2 (clients, produits, fournisseurs)</li>
-            <li>Calculs analytiques : marge, stock disponible, délai de livraison</li>
-            <li>Analyses BI : ventes, rentabilité, clients, stocks</li>
-        </ul>
+                            <ul>
+                                <li>Modélisation dimensionnelle (schéma en étoile)</li>
+                                <li>Intégration de sources CSV et base MySQL</li>
+                                <li>Mise en œuvre des SCD Type 2 (clients, produits, fournisseurs)</li>
+                                <li>Calculs analytiques : marge, stock disponible, délai de livraison</li>
+                                <li>Analyses BI : ventes, rentabilité, clients, stocks</li>
+                            </ul>
 
-        <div class="timeline-skills">
-            <span>Data Warehouse</span>
-            <span>ETL</span>
-            <span>Talend</span>
-            <span>SQL</span>
-            <span>MySQL</span>
-            <span>Big Data</span>
-            <span>Business Intelligence</span>
-            <span>SCD Type 2</span>
-        </div>
-    </div>
-</div>
+                            <div class="timeline-skills">
+                                <span>Data Warehouse</span>
+                                <span>ETL</span>
+                                <span>Talend</span>
+                                <span>SQL</span>
+                                <span>MySQL</span>
+                                <span>Big Data</span>
+                                <span>Business Intelligence</span>
+                                <span>SCD Type 2</span>
+                            </div>
+                        </div>
+                    </div>
 
-                
-<!-- Mini-Projet-data-science -->
-<div class="timeline-item">
-    <div class="timeline-dot"></div>
-    <div class="timeline-content">
-        <span class="timeline-date">2025</span>
-        <h3>Visualisation Interactive des Hôpitaux du Maroc</h3>
-        <h4>Mini-Projet Fin de Module – Master Intelligence Artificielle</h4>
-        <p>
-            Conception d’une application web interactive dédiée à la visualisation et à l’analyse
-            de la répartition des établissements hospitaliers au Maroc.
-            Le projet s’appuie sur des données officielles et propose plusieurs représentations
-            graphiques (carte interactive, diagrammes et treemap) afin de faciliter
-            l’exploration des infrastructures de santé par région et par catégorie.
-            Cette approche met en évidence l’importance de la data visualisation
-            pour l’analyse territoriale et la prise de décision en santé publique.
-        </p>
-        <div class="timeline-skills">
-            <span>D3.js</span>
-            <span>JavaScript</span>
-            <span>HTML5</span>
-            <span>CSS3</span>
-            <span>Data Visualization</span>
-            <span>TopoJSON</span>
-        </div>
-    </div>
-</div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">2025</span>
+                            <h2>Visualisation Interactive des Hôpitaux du Maroc</h2>
+                            <h3>Mini-Projet Fin de Module – Master Intelligence Artificielle</h3>
+                            <p>
+                                Conception d’une application web interactive dédiée à la visualisation et à l’analyse de
+                                la répartition des établissements hospitaliers au Maroc.
+                                Le projet s’appuie sur des données officielles et propose plusieurs représentations
+                                graphiques (carte interactive, diagrammes et treemap) afin de faciliter l’exploration
+                                des infrastructures de santé par région et par catégorie.
+                                Cette approche met en évidence l’importance de la data visualisation pour l’analyse
+                                territoriale et la prise de décision en santé publique.
+                            </p>
+                            <div class="timeline-skills">
+                                <span>D3.js</span>
+                                <span>JavaScript</span>
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>Data Visualization</span>
+                                <span>TopoJSON</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Future experiences -->
-<div class="timeline-item">
-    <div class="timeline-dot"></div>
-        <div class="timeline-content">
-            <span class="timeline-date">À venir</span>
-                <h3>Stage de Fin d'Études / Expérience Professionnelle</h3>
-                <h4>Spécialisation : Intelligence Artificielle & Big Data</h4>
-                <p>
-                        Préparation d'un stage de fin d'études en entreprise, visant à appliquer mes compétences en IA, apprentissage automatique et développement web dans un contexte professionnel.
-                </p>
+                    <div class="timeline-item">
+                        <div class="timeline-dot" aria-hidden="true"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">À venir</span>
+                            <h2>Stage de Fin d'Études / Expérience Professionnelle</h2>
+                            <h3>Spécialisation : Intelligence Artificielle &amp; Big Data</h3>
+                            <p>
+                                Préparation d'un stage de fin d'études en entreprise, visant à appliquer mes compétences
+                                en IA, apprentissage automatique et développement web dans un contexte professionnel.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
-</div>
-
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>

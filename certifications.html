@@ -1,397 +1,608 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projets - Elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Certifications — Elkhouja Mohamed | MongoDB, Qwasar &amp; Web4Jobs</title>
+    <meta name="description"
+        content="Certifications d'Elkhouja Mohamed : parcours MongoDB (Database Admin, Python Developer, Data Modeling), certificats Qwasar Silicon Valley en Data Science et Data Visualization, et formations Web4Jobs et Huawei ICT Academy.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/certifications.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Certifications — Elkhouja Mohamed | MongoDB, Qwasar &amp; Web4Jobs">
+    <meta property="og:description"
+        content="Parcours MongoDB, certificats Qwasar Silicon Valley et formations Web4Jobs et Huawei ICT Academy.">
+    <meta property="og:image" content="images/admin.png">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/certifications.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
-    <link rel="stylesheet" href="style_projects.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
-                <li><a class="nav-link active" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link active" href="certifications.html" aria-current="page">Certifications</a>
+                </li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-    <script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-    <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
+    <main id="main">
+        <section class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">Certifications</span>
+                    <h1 class="section-title">Mes certifications</h2>
+                    <p class="section-subtitle">Parcours MongoDB, data science avec Qwasar Silicon Valley et
+                        formations certifiantes Web4Jobs &amp; Huawei ICT Academy</p>
+                </div>
 
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
+                <div class="projects-grid">
 
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
+                    <!-- MongoDB — Database Admin Path (Self-Managed) -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/admin.png"
+                            alt="Certificat MongoDB Database Admin Path (Self-Managed)" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB%20Database%20Admin%20Path%20(Self-Managed).pdf"
+                                target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Bases de données</span>
+                            <h2 class="project-title">MongoDB Database Admin Path (Self-Managed)</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-leaf" aria-hidden="true"></i> MongoDB</span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Août 2025</span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de complétion pour le parcours MongoDB Database Admin Path (Self-Managed),
+                                obtenu le 15 août 2025. Couvre l'administration et la gestion de bases de données MongoDB
+                                en environnement auto-géré.
+                            </p>
+                            <div class="project-tech">
+                                <span>MongoDB</span>
+                                <span>Database Administration</span>
+                                <span>Self-Managed</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/MongoDB%20Database%20Admin%20Path%20(Self-Managed).pdf"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
+                    <!-- MongoDB — Python Developer Path -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/dev.png"
+                            alt="Certificat MongoDB Python Developer Path" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB%20Python%20Developer%20Path.pdf" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Développement</span>
+                            <h2 class="project-title">MongoDB Python Developer Path</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-leaf" aria-hidden="true"></i> MongoDB</span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Août 2025</span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de complétion pour le parcours MongoDB Python Developer Path, obtenu le
+                                21 août 2025. Formation sur le développement d'applications avec MongoDB et Python.
+                            </p>
+                            <div class="project-tech">
+                                <span>MongoDB</span>
+                                <span>Python</span>
+                                <span>Developer</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/MongoDB%20Python%20Developer%20Path.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-    <section class="projects">
+                    <!-- MongoDB — Data Modeling Path -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/data_modlin.png"
+                            alt="Certificat MongoDB Data Modeling Path" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/MongoDB%20Data%20Modeling%20Path.pdf" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Modélisation</span>
+                            <h2 class="project-title">MongoDB Data Modeling Path</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-leaf" aria-hidden="true"></i> MongoDB</span>
+                                <span class="card-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i> Septembre 2025
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de complétion pour le parcours MongoDB Data Modeling Path, obtenu le
+                                11 septembre 2025. Focus sur la modélisation de données dans MongoDB.
+                            </p>
+                            <div class="project-tech">
+                                <span>MongoDB</span>
+                                <span>Data Modeling</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/MongoDB%20Data%20Modeling%20Path.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Mes certifications</h2>
-                <p class="section-subtitle">Découvrez quelques-unes de mes certifications</p>
+                    <!-- Huawei ICT Academy -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/APD_Huawei.png"
+                            alt="Certificat Algorithm and Program Design - Huawei ICT Academy" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/APD_Huawei.pdf" target="_blank" rel="noopener noreferrer"
+                                class="project-link" aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Algorithmique</span>
+                            <h2 class="project-title">Algorithm and Program Design - Huawei ICT Academy</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer">
+                                    <i class="fas fa-building-columns" aria-hidden="true"></i> Huawei ICT Academy
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Formation certifiante Huawei ICT Academy couvrant les fondamentaux de l'algorithmique
+                                et de la conception de programmes. Programme complet incluant la résolution de problèmes
+                                complexes, l'optimisation d'algorithmes et l'implémentation en langage de programmation.
+                            </p>
+                            <div class="project-tech">
+                                <span>Algorithm Design</span>
+                                <span>Data Structures</span>
+                                <span>Problem Solving</span>
+                                <span>Programming Logic</span>
+                                <span>Complexity Analysis</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/APD_Huawei.pdf" target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Passeport Numérique — Web4Jobs -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/certificat-mohamed-elkhouja.png"
+                            alt="Certificat Passeport Numérique - Web4Jobs" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/certificat-mohamed-elkhouja.pdf" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Compétences numériques</span>
+                            <h2 class="project-title">Passeport Numérique - Web4Jobs</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-briefcase" aria-hidden="true"></i> Web4Jobs
+                                </span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Mars 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat d’achèvement du programme Passeport Numérique délivré par Web4Jobs, valable
+                                jusqu'au 5 mars 2028. Cette formation couvre les compétences fondamentales du
+                                numérique, incluant les outils bureautiques, la création de contenus digitaux, la
+                                programmation avec Scratch, ainsi qu’une initiation au développement web, à la
+                                recherche et à la sécurité numérique.
+                            </p>
+                            <div class="project-tech">
+                                <span>Digital Skills</span>
+                                <span>Web Basics</span>
+                                <span>Scratch</span>
+                                <span>Cybersecurity</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/certificat-mohamed-elkhouja.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Data Visualization — Web4Jobs -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/certificat_data.png"
+                            alt="Certificat Data Visualization - Web4Jobs" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/data_visualisation.pdf" target="_blank" rel="noopener noreferrer"
+                                class="project-link" aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Data visualisation</span>
+                            <h2 class="project-title">Data Visualization - Web4Jobs</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-briefcase" aria-hidden="true"></i> Web4Jobs
+                                </span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Mars 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de formation en visualisation de données avec Web4Jobs, obtenu le 5 mars 2026,
+                                axé sur la création de visualisations interactives en utilisant D3.js. Acquisition des
+                                compétences pour représenter et analyser les données de manière dynamique et intuitive.
+                            </p>
+                            <div class="project-tech">
+                                <span>D3.js</span>
+                                <span>JavaScript</span>
+                                <span>Data Visualization</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/data_visualisation.pdf" target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Data Analysis with Python — Web4Jobs -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/Data%20Analysis%20with%20Python.png"
+                            alt="Certificat Data Analysis with Python - Web4Jobs" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Data%20Analysis%20with%20Python.pdf" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Analyse de données</span>
+                            <h2 class="project-title">Data Analysis with Python</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-briefcase" aria-hidden="true"></i> Web4Jobs
+                                </span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Mai 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de complétion « Data Analysis with Python » délivré par WEB4JOBS, obtenu le
+                                3 mai 2026. Formation axée sur l’analyse des données, la préparation de jeux de données
+                                et l’utilisation de Python pour extraire des insights exploitables.
+                            </p>
+                            <div class="project-tech">
+                                <span>Python</span>
+                                <span>Data Analysis</span>
+                                <span>Pandas</span>
+                                <span>Data Cleaning</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Data%20Analysis%20with%20Python.pdf" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Relational Database — Web4Jobs -->
+                    <article class="project-card">
+                        <img class="project-image" src="images/Relational%20Database.png"
+                            alt="Certificat Relational Database - Web4Jobs" width="660" height="440" loading="lazy"
+                            decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Relational%20Database.pdf" target="_blank" rel="noopener noreferrer"
+                                class="project-link" aria-label="Ouvrir le certificat au format PDF (nouvel onglet)">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Bases de données</span>
+                            <h2 class="project-title">Relational Database</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer"><i class="fas fa-briefcase" aria-hidden="true"></i> Web4Jobs
+                                </span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Mai 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat de complétion « Relational Database » délivré par WEB4JOBS, obtenu le
+                                1er mai 2026. Formation portant sur la modélisation, la gestion et l’interrogation de
+                                bases de données relationnelles avec des principes de conception et d’optimisation.
+                            </p>
+                            <div class="project-tech">
+                                <span>SQL</span>
+                                <span>Relational Database</span>
+                                <span>Database Design</span>
+                                <span>Queries</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Relational%20Database.pdf" target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Voir le Certificat (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Associate Data Scientist — Qwasar -->
+                    <article class="project-card">
+                        <img class="project-image" src="certificates/Qwasar/Associate%20Data%20Scientist.png"
+                            alt="Certificat Associate Data Scientist - Qwasar Silicon Valley" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Qwasar/Associate%20Data%20Scientist.png" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat (nouvel onglet)">
+                                <i class="fas fa-file-image" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Data Science</span>
+                            <h2 class="project-title">Associate Data Scientist</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer">
+                                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> Qwasar Silicon Valley
+                                </span>
+                                <span class="card-date">
+                                    <i class="fas fa-calendar" aria-hidden="true"></i> 23 juillet 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat Qwasar en data science, obtenu le 23 juillet 2026 après la résolution de
+                                55 projets et d'exercices de codage aux standards Silicon Valley, couvrant les
+                                fondamentaux de la data science en programmation Python.
+                            </p>
+                            <div class="project-tech">
+                                <span>Data Science</span>
+                                <span>Python</span>
+                                <span>Statistics</span>
+                                <span>Analytics</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Qwasar/Associate%20Data%20Scientist.png" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-image" aria-hidden="true"></i> Voir le Certificat
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Introduction to Data — Qwasar -->
+                    <article class="project-card">
+                        <img class="project-image" src="certificates/Qwasar/INTRODUCTION%20TO%20DATA.png"
+                            alt="Certificat Introduction to Data - Qwasar Silicon Valley" width="660" height="440"
+                            loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Qwasar/INTRODUCTION%20TO%20DATA.png" target="_blank"
+                                rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat (nouvel onglet)">
+                                <i class="fas fa-file-image" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Fondamentaux de la donnée</span>
+                            <h2 class="project-title">Introduction to Data</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer">
+                                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> Qwasar Silicon Valley
+                                </span>
+                                <span class="card-date"><i class="fas fa-calendar" aria-hidden="true"></i> Juin 2026
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat Qwasar sur les fondamentaux de la donnée, obtenu le 10 juin 2026 après la
+                                résolution de 31 projets et d'exercices de codage aux standards Silicon Valley, avec une
+                                mise en pratique des concepts de collecte, de transformation, de nettoyage et
+                                d’interprétation des informations en programmation Python.
+                            </p>
+                            <div class="project-tech">
+                                <span>Data</span>
+                                <span>Processing</span>
+                                <span>Data Cleaning</span>
+                                <span>Analysis</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Qwasar/INTRODUCTION%20TO%20DATA.png" target="_blank"
+                                    rel="noopener noreferrer" class="card-link card-link-github">
+                                    <i class="fas fa-file-image" aria-hidden="true"></i> Voir le Certificat
+                                </a>
+                                <a href="certificates/data_01.pdf" target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-alt">
+                                    <i class="fas fa-file-pdf" aria-hidden="true"></i> Version PDF
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Introduction to Software Engineering (1) — Qwasar -->
+                    <article class="project-card">
+                        <img class="project-image"
+                            src="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_1.png"
+                            alt="Certificat Introduction to Software Engineering niveau I - Qwasar Silicon Valley"
+                            width="660" height="440" loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_1.png"
+                                target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat (nouvel onglet)">
+                                <i class="fas fa-file-image" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Génie logiciel</span>
+                            <h2 class="project-title">Introduction to Software Engineering (1)</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer">
+                                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> Qwasar Silicon Valley
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat Qwasar portant sur les fondements du développement logiciel, obtenu après la
+                                résolution de 20 projets et d'exercices de codage aux standards Silicon Valley couvrant
+                                les principes du génie logiciel en programmation C niveau I.
+                            </p>
+                            <div class="project-tech">
+                                <span>Software Engineering</span>
+                                <span>Programming</span>
+                                <span>Logic</span>
+                                <span>Problem Solving</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_1.png"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-image" aria-hidden="true"></i> Voir le Certificat
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Introduction to Software Engineering (2) — Qwasar -->
+                    <article class="project-card">
+                        <img class="project-image"
+                            src="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_2.png"
+                            alt="Certificat Introduction to Software Engineering niveau II - Qwasar Silicon Valley"
+                            width="660" height="440" loading="lazy" decoding="async">
+                        <div class="project-links">
+                            <a href="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_2.png"
+                                target="_blank" rel="noopener noreferrer" class="project-link"
+                                aria-label="Ouvrir le certificat (nouvel onglet)">
+                                <i class="fas fa-file-image" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Génie logiciel</span>
+                            <h2 class="project-title">Introduction to Software Engineering (2)</h2>
+                            <div class="card-meta">
+                                <span class="card-issuer">
+                                    <i class="fas fa-graduation-cap" aria-hidden="true"></i> Qwasar Silicon Valley
+                                </span>
+                            </div>
+                            <p class="project-description">
+                                Certificat Qwasar dans le domaine du développement logiciel, obtenu après la résolution
+                                de 29 projets et d'exercices de codage aux standards Silicon Valley, illustrant la
+                                progression dans la compréhension des bonnes pratiques de code, de la structure et de
+                                l’architecture logicielle en programmation C niveau II.
+                            </p>
+                            <div class="project-tech">
+                                <span>Software Engineering</span>
+                                <span>Development</span>
+                                <span>Architecture</span>
+                                <span>Best Practices</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="certificates/Qwasar/INTRODUCTION%20TO%20SOFTWARE%20ENGINEERING_2.png"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="card-link card-link-github">
+                                    <i class="fas fa-file-image" aria-hidden="true"></i> Voir le Certificat
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
             </div>
-
-            <!-- Certificat 1: MongoDB Database Admin Path -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/admin.png');">
-                        <div class="project-links">
-                            <a href="certificates/MongoDB Database Admin Path (Self-Managed).pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">MongoDB Database Admin Path (Self-Managed)</h3>
-                        <p class="project-description">
-                            Certificat de complétion pour le parcours MongoDB Database Admin Path (Self-Managed), obtenu le 15 août 2025. Couvre l'administration et la gestion de bases de données MongoDB en environnement auto-géré.
-                        </p>
-                        <div class="project-tech">
-                            <span>MongoDB</span>
-                            <span>Database Administration</span>
-                            <span>Self-Managed</span>
-                        </div>
-                        <a href="certificates/MongoDB Database Admin Path (Self-Managed).pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
-                    </div>
-                </div>
-
-                <!-- Certificat 2: MongoDB Python Developer Path -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/dev.png');">
-                        <div class="project-links">
-                            <a href="certificates/MongoDB Python Developer Path.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">MongoDB Python Developer Path</h3>
-                        <p class="project-description">
-                            Certificat de complétion pour le parcours MongoDB Python Developer Path, obtenu le 20 août 2025. Formation sur le développement d'applications avec MongoDB et Python.
-                        </p>
-                        <div class="project-tech">
-                            <span>MongoDB</span>
-                            <span>Python</span>
-                            <span>Developer</span>
-                        </div>
-                        <a href="certificates/MongoDB Python Developer Path.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
-                    </div>
-                </div>
-
-                <!-- Certificat 3: MongoDB Data Modeling Path -->
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/data_modlin.png');">
-                        <div class="project-links">
-                            <a href="certificates/MongoDB Data Modeling Path.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">MongoDB Data Modeling Path</h3>
-                        <p class="project-description">
-                            Certificat de complétion pour le parcours MongoDB Data Modeling Path, obtenu le 11 septembre 2025. Focus sur la modélisation de données dans MongoDB.
-                        </p>
-                        <div class="project-tech">
-                            <span>MongoDB</span>
-                            <span>Data Modeling</span>
-                        </div>
-                        <a href="certificates/MongoDB Data Modeling Path.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
-                    </div>
-                </div>
-                 <!-- Algorithm and Program Design - Huawei ICT Academy-->
-
-                 <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/APD_Huawei.png');">
-                        <div class="project-links">
-                            <a href="certificates/APD_Huawei.pdf" target="_blank" class="project-link"><i class="fas fa-file-pdf"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Algorithm and Program Design - Huawei ICT Academy</h3>
-                        <p class="project-description">
-                            Formation certifiante Huawei ICT Academy couvrant les fondamentaux de l'algorithmique et de la conception de programmes. Programme complet incluant la résolution de problèmes complexes, l'optimisation d'algorithmes et l'implémentation en langage de programmation.
-                        <div class="project-tech">
-                            <span>Algorithm Design</span>
-                            <span>Data Structures</span>
-                            <span>Problem Solving</span>
-                            <span>Programming Logic</span>
-                            <span>Complexity Analysis</span>
-                        </div>
-                        <a href="certificates/APD_Huawei.pdf" target="_blank" class="github-link">Voir le Certificat (PDF)</a>
-                    </div>
-                </div>
-
-                <!-- Certificat: Passeport Numérique - Web4Jobs -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/certificat-mohamed-elkhouja.png');">
-        <div class="project-links">
-            <a href="certificates/certificat-mohamed-elkhouja.pdf" target="_blank" class="project-link">
-                <i class="fas fa-file-pdf"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Passeport Numérique - Web4Jobs</h3>
-        <p class="project-description">
-            Certificat d’achèvement du programme Passeport Numérique délivré par Web4Jobs. Cette formation couvre les compétences fondamentales du numérique, incluant les outils bureautiques, la création de contenus digitaux, la programmation avec Scratch, ainsi qu’une initiation au développement web, à la recherche et à la sécurité numérique.
-        </p>
-        <div class="project-tech">
-            <span>Digital Skills</span>
-            <span>Web Basics</span>
-            <span>Scratch</span>
-            <span>Cybersecurity</span>
-        </div>
-        <a href="certificates/certificat-mohamed-elkhouja.pdf" target="_blank" class="github-link">
-            Voir le Certificat (PDF)
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Data Visualization - Web4Jobs -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/certificat_data.png');">
-        <div class="project-links">
-            <a href="certificates/data_visualisation.pdf" target="_blank" class="project-link">
-                <i class="fas fa-file-pdf"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Data Visualization - Web4Jobs</h3>
-        <p class="project-description">
-            Certificat de formation en visualisation de données avec Web4Jobs, axé sur la création de visualisations interactives en utilisant D3.js. Acquisition des compétences pour représenter et analyser les données de manière dynamique et intuitive.
-        </p>
-        <div class="project-tech">
-            <span>D3.js</span>
-            <span>JavaScript</span>
-            <span>Data Visualization</span>
-        </div>
-        <a href="certificates/data_visualisation.pdf" target="_blank" class="github-link">
-            Voir le Certificat (PDF)
-        </a>
-    </div>
-</div>
-                
-                <!-- Certificat: Associate Data Scientist -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('certificates/Qwasar/Associate Data Scientist.png');">
-        <div class="project-links">
-            <a href="certificates/Qwasar/Associate Data Scientist.png" target="_blank" class="project-link">
-                <i class="fas fa-file-image"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Associate Data Scientist</h3>
-        <p class="project-description">
-            Certificat Qwasar en data science, couvrant les bases de l’analyse de données, des méthodologies statistiques et de l’exploitation des données pour produire des insights utiles et structurés.
-        </p>
-        <div class="project-tech">
-            <span>Data Science</span>
-            <span>Python</span>
-            <span>Statistics</span>
-            <span>Analytics</span>
-        </div>
-        <a href="certificates/Qwasar/Associate Data Scientist.png" target="_blank" class="github-link">
-            Voir le Certificat
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Introduction to Data -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('certificates/Qwasar/INTRODUCTION TO DATA.png');">
-        <div class="project-links">
-            <a href="certificates/Qwasar/INTRODUCTION TO DATA.png" target="_blank" class="project-link">
-                <i class="fas fa-file-image"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Introduction to Data</h3>
-        <p class="project-description">
-            Certificat Qwasar sur les fondamentaux de la donnée, avec une mise en pratique des concepts de collecte, de transformation, de nettoyage et d’interprétation des informations.
-        </p>
-        <div class="project-tech">
-            <span>Data</span>
-            <span>Processing</span>
-            <span>Data Cleaning</span>
-            <span>Analysis</span>
-        </div>
-        <a href="certificates/Qwasar/INTRODUCTION TO DATA.png" target="_blank" class="github-link">
-            Voir le Certificat
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Introduction to Software Engineering (1) -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_1.png');">
-        <div class="project-links">
-            <a href="certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_1.png" target="_blank" class="project-link">
-                <i class="fas fa-file-image"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Introduction to Software Engineering (1)</h3>
-        <p class="project-description">
-            Certificat Qwasar portant sur les fondements du développement logiciel, avec une introduction aux principes de conception logicielle, à la structure des programmes et à la résolution de problèmes.
-        </p>
-        <div class="project-tech">
-            <span>Software Engineering</span>
-            <span>Programming</span>
-            <span>Logic</span>
-            <span>Problem Solving</span>
-        </div>
-        <a href="certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_1.png" target="_blank" class="github-link">
-            Voir le Certificat
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Introduction to Software Engineering (2) -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_2.png');">
-        <div class="project-links">
-            <a href="certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_2.png" target="_blank" class="project-link">
-                <i class="fas fa-file-image"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Introduction to Software Engineering (2)</h3>
-        <p class="project-description">
-            Deuxième certificat Qwasar dans le domaine du développement logiciel, illustrant la progression dans la compréhension des bonnes pratiques de code, de la structure et de l’architecture logicielle.
-        </p>
-        <div class="project-tech">
-            <span>Software Engineering</span>
-            <span>Development</span>
-            <span>Architecture</span>
-            <span>Best Practices</span>
-        </div>
-        <a href="certificates/Qwasar/INTRODUCTION TO SOFTWARE ENGINEERING_2.png" target="_blank" class="github-link">
-            Voir le Certificat
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Data Analysis with Python -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/Data Analysis with Python.png');">
-        <div class="project-links">
-            <a href="certificates/Data Analysis with Python.pdf" target="_blank" class="project-link">
-                <i class="fas fa-file-pdf"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Data Analysis with Python</h3>
-        <p class="project-description">
-            Certificat de complétion « Data Analysis with Python » délivré par WEB4JOBS, obtenu le 3 mai 2026. Formation axée sur l’analyse des données, la préparation de jeux de données et l’utilisation de Python pour extraire des insights exploitables.
-        </p>
-        <div class="project-tech">
-            <span>Python</span>
-            <span>Data Analysis</span>
-            <span>Pandas</span>
-            <span>Data Cleaning</span>
-        </div>
-        <a href="certificates/Data Analysis with Python.pdf" target="_blank" class="github-link">
-            Voir le Certificat (PDF)
-        </a>
-    </div>
-</div>
-
-                <!-- Certificat: Relational Database -->
-<div class="project-card">
-    <div class="project-image" style="background-image: url('images/Relational Database.png');">
-        <div class="project-links">
-            <a href="certificates/Relational Database.pdf" target="_blank" class="project-link">
-                <i class="fas fa-file-pdf"></i>
-            </a>
-        </div>
-    </div>
-    <div class="project-content">
-        <h3 class="project-title">Relational Database</h3>
-        <p class="project-description">
-            Certificat de complétion « Relational Database » délivré par WEB4JOBS, obtenu le 1er mai 2026. Formation portant sur la modélisation, la gestion et l’interrogation de bases de données relationnelles avec des principes de conception et d’optimisation.
-        </p>
-        <div class="project-tech">
-            <span>SQL</span>
-            <span>Relational Database</span>
-            <span>Database Design</span>
-            <span>Queries</span>
-        </div>
-        <a href="certificates/Relational Database.pdf" target="_blank" class="github-link">
-            Voir le Certificat (PDF)
-        </a>
-    </div>
-</div>
-                
-        </div>
-        
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>

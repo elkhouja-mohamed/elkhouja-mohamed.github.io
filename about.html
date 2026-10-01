@@ -1,170 +1,190 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À propos - Elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>À propos — Elkhouja Mohamed | IA &amp; Data Science</title>
+    <meta name="description"
+        content="Licence en Sciences Mathématiques et Informatique Appliquées, Master en Intelligence Artificielle et Applications à Ouarzazate : parcours de Mohamed Elkhouja en IA, Data Science, Big Data et développement web.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/about.html">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="À propos — Elkhouja Mohamed | IA &amp; Data Science">
+    <meta property="og:description"
+        content="Master Intelligence Artificielle et Applications, futur ingénieur Big Data et Systèmes de Données.">
+    <meta property="og:image" content="images/about.png">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/about.html">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" href="images/icon.png">
-    <link rel="stylesheet" href="style_about.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
+
+            <ul id="menu" class="nav-menu">
                 <li><a class="nav-link" href="index.html">Accueil</a></li>
-                <li><a class="nav-link active" href="about.html" class="active">À propos</a></li>
+                <li><a class="nav-link active" href="about.html" aria-current="page">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
-                <li><a class="nav-link" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-    <script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
-    <section class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">À propos de moi</h2>
-                <p class="section-subtitle">Licence en Sciences Mathématiques et Informatique Appliquées (SMIA)</b>, une formation qui m’a permis d’acquérir une solide base en mathématiques, statistiques, programmation et algorithmique. 
-Cette formation m’a donné les outils nécessaires pour aborder des problématiques complexes de manière analytique et structurée.</p>
-            </div>
-            <div class="about-content">
-                <div>
-                    <p class="about-description">
-                        Actuellement inscrit(e) en <b>Master Intelligence Artificielle et Applications</b> à la 
-<b>Faculté Polydisciplinaire de Ouarzazate</b>, je poursuis un parcours axé sur la conception et le développement de solutions intelligentes 
-dans des domaines variés tels que l’apprentissage automatique, les réseaux de neurones, le traitement du langage naturel et la vision par ordinateur.
+    <main id="main">
+        <section class="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="eyebrow">À propos</span>
+                    <h1 class="section-title">À propos de moi</h2>
+                    <p class="section-subtitle">
+                        <strong>Licence en Sciences Mathématiques et Informatique Appliquées (SMIA)</strong>, une
+                        formation qui m’a permis d’acquérir une solide base en mathématiques, statistiques,
+                        programmation et algorithmique.
+                        Cette formation m’a donné les outils nécessaires pour aborder des problématiques complexes de
+                        manière analytique et structurée.
                     </p>
-                    <p class="about-description">
-                        Ce cursus me permet de renforcer mes compétences techniques en 
-<b>Python, bases de données NoSQL, Big Data et optimisation numérique</b>, 
-tout en développant un sens aigu de l’éthique et de la gestion de projet dans le domaine de l’IA.
-</p>
-<p>
-Curieux, rigoureux et motivé, je souhaite mettre mes connaissances au service de projets innovants mêlant 
-<b>analyse de données, intelligence artificielle et développement logiciel</b>, 
-tout en continuant à évoluer dans un environnement stimulant et orienté vers la recherche et l’innovation.
-</p>
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-code"></i>
-                            <div>
-                                <h4>Futur ingénieur en Big Data et Systèmes de Bases de Données</h4>
-                                <p>Passionné par la gestion, le traitement et l’analyse des données,
-                                    je me spécialise dans le domaine du Big Data et des systèmes de bases de données tels que 
-                                    MongoDB et PostgreSQL. Mon objectif est de concevoir, optimiser et exploiter des architectures de données performantes 
-                                    (Data Warehouse, analyse de données) afin de contribuer à la transformation digitale à travers des solutions basées 
-                                    sur l’intelligence artificielle et la science des données.</p>
+                </div>
+
+                <div class="about-content">
+                    <div>
+                        <p class="about-description">
+                            Diplômé d’un <strong>Master Intelligence Artificielle et Applications</strong> à la
+                            <strong>Faculté Polydisciplinaire de Ouarzazate</strong>, mon parcours est axé sur la
+                            conception et le développement de solutions intelligentes dans des domaines variés tels que
+                            l’apprentissage automatique, les réseaux de neurones, le traitement du langage naturel et
+                            la vision par ordinateur.
+                        </p>
+                        <p class="about-description">
+                            Ce cursus m’a permis de renforcer mes compétences techniques en
+                            <strong>Python, bases de données NoSQL, Big Data et optimisation numérique</strong>,
+                            tout en développant un sens aigu de l’éthique et de la gestion de projet dans le domaine
+                            de l’IA.
+                        </p>
+                        <p class="about-description">
+                            Curieux, rigoureux et motivé, je souhaite mettre mes connaissances au service de projets
+                            innovants mêlant
+                            <strong>analyse de données, intelligence artificielle et développement logiciel</strong>,
+                            tout en continuant à évoluer dans un environnement stimulant et orienté vers la recherche
+                            et l’innovation.
+                        </p>
+
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-database" aria-hidden="true"></i>
+                                <div>
+                                    <h2>Futur ingénieur en Big Data et Systèmes de Bases de Données</h2>
+                                    <p>Passionné par la gestion, le traitement et l’analyse des données,
+                                        je me spécialise dans le domaine du Big Data et des systèmes de bases de
+                                        données tels que MongoDB et PostgreSQL. Mon objectif est de concevoir,
+                                        optimiser et exploiter des architectures de données performantes
+                                        (Data Warehouse, analyse de données) afin de contribuer à la transformation
+                                        digitale à travers des solutions basées sur l’intelligence artificielle et la
+                                        science des données.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                                <div>
+                                    <h2>Intelligence Artificielle</h2>
+                                    <p>Machine learning, deep learning et algorithmes avancés pour l'IA</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                <div>
+                                    <h2>Innovation</h2>
+                                    <p>Futur Ingénieur en Big Data, Systèmes de Données et Innovation</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-brain"></i>
-                            <div>
-                                <h4>Intelligence Artificielle</h4>
-                                <p>Machine learning, deep learning et algorithmes avancés pour l'IA</p>
-                            </div>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="about-image-container">
+                            <img src="images/about.png" alt="Mohamed Elkhouja" class="about-image" width="400"
+                                height="500" loading="lazy" decoding="async">
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <div>
-                                <h4>Innovation</h4>
-                                <p>Futur Ingénieur en Big Data, Systèmes de Données et Innovation</p>
-                            </div>
+                        <div class="stat-card">
+                            <div class="stat-number">26</div>
+                            <div class="stat-label">Ans</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Master</div>
+                            <div class="stat-label">IA et Applications</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Langues</div>
                         </div>
                     </div>
                 </div>
-                           
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">26</div>
-                        <div class="stat-label">Ans</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">Master</div>
-                        <div class="stat-label">IA et Applications</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">4</div>
-                        <div class="stat-label">Langues
-                        </div>
-                    </div>
-                    <div class="about-image-container">
-                <img src="images/about.png" alt="Photo about" class="about-image">
             </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
-    
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>

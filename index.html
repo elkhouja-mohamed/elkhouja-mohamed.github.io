@@ -1,88 +1,227 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>elkhouja-mohamed</title>
+    <meta name="theme-color" content="#2563eb">
+
+    <title>Elkhouja Mohamed — IA, Data Science &amp; Développement Logiciel</title>
+    <meta name="description"
+        content="Portfolio d'Elkhouja Mohamed, diplômé d'un Master en Intelligence Artificielle et Applications : Data Science, Deep Learning, développement web (Django, React) et bases de données. Découvrez ses projets, certifications et expériences.">
+    <meta name="author" content="Elkhouja Mohamed">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://elkhouja-mohamed.github.io/portfolio/index.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Elkhouja Mohamed — IA, Data Science &amp; Développement Logiciel">
+    <meta property="og:description"
+        content="Master Intelligence Artificielle et Applications. Data Science, Deep Learning, Django/React et bases de données. Projets, certifications et expériences.">
+    <meta property="og:image" content="images/SSS.jpg">
+    <meta property="og:url" content="https://elkhouja-mohamed.github.io/portfolio/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Elkhouja Mohamed — IA, Data Science &amp; Développement Logiciel">
+    <meta name="twitter:description"
+        content="Master Intelligence Artificielle et Applications. Data Science, Deep Learning, Django/React et bases de données.">
+    <meta name="twitter:image" content="images/SSS.jpg">
+
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
+
     <header class="navbar">
         <div class="nav-container">
-            <a href="index.html"><img src="images/med.png"></a>
+            <a class="nav-brand" href="index.html" aria-label="Elkhouja Mohamed — Accueil">
+                <img src="images/med.png" alt="" width="40" height="40">
+                <span class="nav-brand-name">Elkhouja&nbsp;Mohamed</span>
+            </a>
 
-            <!-- button -->
-            <button id="menu-btn">☰</button>
+            <button id="menu-btn" type="button" aria-label="Ouvrir le menu" aria-expanded="false"
+                aria-controls="menu">&#9776;</button>
 
-        <!-- menu -->
-        <ul id="menu" class="nav-menu">
-                <li><a class="nav-link active" href="index.html">Accueil</a></li>
+            <ul id="menu" class="nav-menu">
+                <li><a class="nav-link active" href="index.html" aria-current="page">Accueil</a></li>
                 <li><a class="nav-link" href="about.html">À propos</a></li>
                 <li><a class="nav-link" href="skills.html">Compétences</a></li>
                 <li><a class="nav-link" href="experience.html">Expérience</a></li>
                 <li><a class="nav-link" href="projects.html">Projets</a></li>
-                <li><a class="nav-link" href="certifications.html">certifications</a></li>
+                <li><a class="nav-link" href="certifications.html">Certifications</a></li>
                 <li><a class="nav-link" href="contact.html">Contact</a></li>
             </ul>
         </div>
     </header>
-    <script>
-    const btn = document.getElementById("menu-btn");
-    const menu = document.getElementById("menu");
 
-    btn.addEventListener("click", () => {
-        menu.classList.toggle("show");
-        });
-    </script>
-
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div>
-                    <h1 class="hero-title"><span class="highlight">ELKHOUJA Mohmed</span></h1>
-                    <h2 class="hero-subtitle">Diplômé d’un Master en Intelligence Artificielle et Applications, avec une certification Data Developer (Web4Jobs) et une formation
-en Data Science (Qwasar Silicon Valley), je suis passionné par l’IA, la Data Science et le développement logiciel. Je recherche une
-opportunité pour concevoir, développer et déployer des solutions innovantes à forte valeur ajoutée.</h2>
-                    <p class="hero-description">
-                        
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="projects.html" class="btn btn-primary">Voir mes projets</a>
-                        <a href="contact.html" class="btn btn-secondary">Me contacter</a>
-                        <a href="cv/CV_elkhouja.pdf" download="cv/CV_elkhouja.pdf" class="btn btn-primary">CV</a>
-
+    <main id="main">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div>
+                        <span class="eyebrow">Intelligence Artificielle · Data Science · Web</span>
+                        <h1 class="hero-title"><span class="highlight">ELKHOUJA Mohmed</span></h1>
+                        <p class="hero-subtitle">
+                            Diplômé d’un Master en Intelligence Artificielle et Applications, avec une certification
+                            Data Developer (Web4Jobs) et une formation en Data Science (Qwasar Silicon Valley),
+                            je suis passionné par l’IA, la Data Science et le développement logiciel.
+                            Je recherche une opportunité pour concevoir, développer et déployer des solutions
+                            innovantes à forte valeur ajoutée.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="projects.html" class="btn btn-primary">
+                                <i class="fas fa-code" aria-hidden="true"></i> Voir mes projets
+                            </a>
+                            <a href="contact.html" class="btn btn-secondary">
+                                <i class="fas fa-envelope" aria-hidden="true"></i> Me contacter
+                            </a>
+                            <a href="cv/CV_elkhouja.pdf" download class="btn btn-secondary">
+                                <i class="fas fa-file-pdf" aria-hidden="true"></i> Télécharger le CV
+                            </a>
+                        </div>
+                        <ul class="hero-social" aria-label="Réseaux sociaux">
+                            <li>
+                                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"
+                                    target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                                    rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                                    <i class="fab fa-github" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank"
+                                    rel="noopener noreferrer" aria-label="X (nouvel onglet)">
+                                    <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                                    target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div class="profile-card">
-                    <div class="profile-img">
-                        <img src="images/SSS.jpg" alt="elkhouja-mohamed">
-                    </div>
-                    <div class="profile-decorations">
-                        <div class="decoration decoration-1"></div>
-                        <div class="decoration decoration-2"></div>
-                        <div class="decoration decoration-3"></div>
+
+                    <div class="profile-card">
+                        <div class="profile-img">
+                            <img src="images/SSS.jpg" alt="Portrait d'Elkhouja Mohamed" width="280" height="280">
+                        </div>
+                        <div class="profile-decorations" aria-hidden="true">
+                            <div class="decoration decoration-1"></div>
+                            <div class="decoration decoration-2"></div>
+                            <div class="decoration decoration-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Domaines d'expertise</h2>
+                    <p class="section-subtitle">Une triple casquette en intelligence artificielle, science des données
+                        et développement web.</p>
+                </div>
+                <div class="about-content">
+                    <div>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-database" aria-hidden="true"></i>
+                                <div>
+                                    <h3>Big Data &amp; Systèmes de Bases de Données</h3>
+                                    <p>Passionné par la gestion, le traitement et l’analyse des données,
+                                        je me spécialise dans le domaine du Big Data et des systèmes de bases de données
+                                        tels que MongoDB et PostgreSQL. Mon objectif est de concevoir, optimiser et
+                                        exploiter des architectures de données performantes (Data Warehouse, analyse de
+                                        données) afin de contribuer à la transformation digitale à travers des solutions
+                                        basées sur l’intelligence artificielle et la science des données.</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-brain" aria-hidden="true"></i>
+                                <div>
+                                    <h3>Intelligence Artificielle</h3>
+                                    <p>Machine learning, deep learning et algorithmes avancés pour l'IA</p>
+                                </div>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                <div>
+                                    <h3>Innovation</h3>
+                                    <p>Futur Ingénieur en Big Data, Systèmes de Données et Innovation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">26</div>
+                            <div class="stat-label">Ans</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">Master</div>
+                            <div class="stat-label">IA et Applications</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Langues</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-text">
-                </p>© 2025 elkhouja-mohamed. Tous droits réservés</p>
+                <p>&copy; <span id="year">2026</span> Elkhouja Mohamed. Tous droits réservés</p>
             </div>
-            <div class="footer-social">
-                <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/elkhouja-mohamed" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="https://x.com/elkhouja_medo" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"><i class="fab fa-instagram"></i></a>
-            </div>
+            <ul class="footer-social">
+                <li>
+                    <a href="https://www.linkedin.com/in/elkhouja-mohamed/" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn (nouvel onglet)">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/elkhouja-mohamed" class="social-link" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub (nouvel onglet)">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://x.com/elkhouja_medo" class="social-link" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (nouvel onglet)">
+                        <i class="fab fa-x-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553556730711" class="social-link"
+                        target="_blank" rel="noopener noreferrer" aria-label="Facebook (nouvel onglet)">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
     </footer>
-    
+
+    <script src="script.js" defer></script>
 </body>
+
 </html>
